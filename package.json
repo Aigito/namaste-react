@@ -1,0 +1,22 @@
+{
+  "name": "namaste-react",
+  "version": "1.0.0",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Aigito/namaste-react.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aigito/namaste-react/issues"
+  },
+  "homepage": "https://github.com/Aigito/namaste-react#readme",
+  "description": "",
+  "devDependencies": {
+    "parcel": "^2.15.4"
+  }
+}
