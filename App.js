@@ -1,20 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+//* Rendering React Element (stored as a JS variable) inside of a React Component
 
-const JsxHeading = () => (
+const elem = <span>Example</span>
+
+const jsxHeading = (
   <h1 id="heading" className="head" tabIndex="5">
     Writting JSX inside of JS file
   </h1>
 );
 
-//* JS code inside of JSX
-
-const number = 100;
-
 const HeadingComponent = () => (
   <div id="container">
-    {number}
+    {elem}
+    {jsxHeading}
     <h1 className="heading">
       Namaste React Functional Component
     </h1>
