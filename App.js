@@ -5,7 +5,7 @@ import ReactDOM from "react-dom/client";
 
 const elem = <span>Example</span>
 
-const jsxHeading = (
+const JsxHeading = () => (
   <h1 id="heading" className="head" tabIndex="5">
     Writting JSX inside of JS file
   </h1>
@@ -14,7 +14,8 @@ const jsxHeading = (
 const HeadingComponent = () => (
   <div id="container">
     {elem}
-    {jsxHeading}
+    <JsxHeading /> //* This works
+    {JsxHeading()} //* This also works
     <h1 className="heading">
       Namaste React Functional Component
     </h1>
