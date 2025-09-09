@@ -22,27 +22,45 @@ const Header = () => {
   );
 };
 
-const RestaurantCard = () => {
+const RestaurantCard = (props) => {
+  const { name, cuisine, img } = props?.data
   return (
     <div className="restaurant-card" style={{ backgroundColor: "#f0f0f0" }}>
       <img
         className="restaurant-img"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA8nfimdarqId_8uxMv0k2RYgvurn15yQF7Q&s"
+        src={img}
       />
-      <h3>Pondok Daun</h3>
-      <h4>Indonesian, Spicy</h4>
+      <h3>{name}</h3>
+      <h4>{cuisine}</h4>
       <h4>5.0/5.0</h4>
       <h4>3.0 km</h4>
     </div>
   );
 };
 
+const restaurantList = [
+  {
+    id: "random1",
+    name: "Pondok Daun",
+    cuisine: "Indonesian, Non-Spicy",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA8nfimdarqId_8uxMv0k2RYgvurn15yQF7Q&s"
+  },
+  {
+    id: "random2",
+    name: "18th Street Hot Pot",
+    cuisine: "Chinese, Spicy",
+    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaO5N1DzuW56B9xqxXRpSEZSfEwXZizCx8mg&s"
+  }
+]
+
 const Body = () => {
   return (
     <div className="body">
       <div className="search">Search</div>
       <div className="restaurants-container">
-        <RestaurantCard />
+        {restaurantList.map((res, idx) => (
+          <RestaurantCard key={res.id} data={res} />
+        ))}
       </div>
     </div>
   );
