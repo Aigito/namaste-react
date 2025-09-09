@@ -1,18 +1,17 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-//* React Element
+//* React Component Composition
 
-const jsxHeading = (
+const JsxHeading = () => (
   <h1 id="heading" className="head" tabIndex="5">
     Writting JSX inside of JS file
   </h1>
 );
 
-//* React Functional Component
-
 const HeadingComponent = () => (
   <div id="container">
+    <JsxHeading />
     <h1 className="heading">
       Namaste React Functional Component
     </h1>
