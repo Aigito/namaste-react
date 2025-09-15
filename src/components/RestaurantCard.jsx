@@ -1,10 +1,11 @@
 const RestaurantCard = (props) => {
-  const { name, cuisines, avgRating, availability } = props?.data
+  const { name, cuisines, avgRating, availability, cloudinaryImageId } = props?.data || {};
   return (
     <div className="restaurant-card" style={{ backgroundColor: "#f0f0f0" }}>
       <img
         className="restaurant-img"
-        src={"RX_THUMBNAIL/IMAGES/VENDOR/2025/6/18/ac30c19f-5572-448a-9c6a-44be9d986625_5934.jpg"}
+        // This is just a Mock API that Akshay provided, img does not work
+        src={cloudinaryImageId}
       />
       <h3>{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
