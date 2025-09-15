@@ -1,5 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
 
@@ -17,6 +18,15 @@ const Body = () => {
     setListOfRestaurants(json?.data?.cards["1"]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
+  let cards;
+  if (listOfRestaurants.length === 0) {
+    cards = <Shimmer count={6} />
+  } else {
+    cards = listOfRestaurants.map((res) => (
+      <RestaurantCard key={res.info.id} data={res.info} />
+    ))
+  }
+
   return (
     <div className="body">
       <button
@@ -27,11 +37,11 @@ const Body = () => {
         }}>
         Top Rated Restaurants
       </button>
-      <div className="restaurants-container">
-        {listOfRestaurants.map((res) => (
-          <RestaurantCard key={res.info.id} data={res.info} />
-        ))}
-      </div>
+      {listOfRestaurants &&
+        <div className="restaurants-container">
+          {cards}
+        </div>
+      }
     </div>
   );
 };
