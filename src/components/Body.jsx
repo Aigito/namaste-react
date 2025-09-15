@@ -29,14 +29,20 @@ const Body = () => {
 
   return (
     <div className="body">
-      <button
-        className="filter-btn"
-        onClick={() => {
-          const filteredList = listOfRestaurants.filter(res => res.rating > 4);
-          setListOfRestaurants(filteredList);
-        }}>
-        Top Rated Restaurants
-      </button>
+      <div className="filter">
+        <div className="search">
+          <input type="text" className="search-box" />
+          <button>Search</button>
+        </div>
+        <button
+          className="filter-btn"
+          onClick={() => {
+            const filteredList = listOfRestaurants.filter(res => res.info.avgRating > 4.5);
+            setListOfRestaurants(filteredList);
+          }}>
+          Top Rated Restaurants
+        </button>
+      </div>
       {listOfRestaurants &&
         <div className="restaurants-container">
           {cards}
