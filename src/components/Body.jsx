@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { MOCK_SWIGGY_URL } from "../utils/constants";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -56,7 +57,11 @@ const Body = () => {
         </div>
         <div className="restaurants-container">
           {filteredListOfRestaurants.map((res) => (
-            <RestaurantCard key={res.info.id} data={res.info} />
+            // Note: We can make the id param dynamic but because Swiggy no longer provides public API
+            // we can only mock the data and it shows the same menu for all the restaurants
+            <Link to={"/restaurant/" + res.info.id} key={res.info.id}>
+              <RestaurantCard data={res.info} />
+            </Link>
           ))}
         </div>
       </div>
