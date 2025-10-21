@@ -11,7 +11,7 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchMenu = async () => {
-    const response = await fetch("http://localhost:5000/api/restaurants");
+    const response = await fetch(`http://localhost:5000/api/restaurants/menu/${resId}`);
     const data = await response.json();
 
     console.log(data);
