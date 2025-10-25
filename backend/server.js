@@ -39,9 +39,9 @@ app.get("/api/restaurants/menu/:resId", async (req, res) => {
 
   const cacheKey = `menu-${resId}`;
 
-  try {
-    // if (cache.has(cacheKey)) return res.json(cache.get(cacheKey));
+  if (cache.has(cacheKey)) return res.json(cache.get(cacheKey));
 
+  try {
     const cookie = await retrieveSwiggyCookie();
 
     const response = await fetch(
@@ -56,11 +56,11 @@ app.get("/api/restaurants/menu/:resId", async (req, res) => {
     )
 
     const data = await response.json();
-
-    res.send(data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards);
-
+    const filteredData = data.data.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card.itemCards;
+    cache.set(cacheKey, filteredData);
+    res.send(filteredData);
   } catch (err) {
-    console.error("❌ Something went wrong with fetching restaurant menu items:", err.message);
+    console.error("❌ Something went wrong with fetching restaurant menu items:", err.message, err.stack);
     res.status(500).json({ error: "❌ Something went wrong with fetching restaurant menu items:" });
   }
 });
