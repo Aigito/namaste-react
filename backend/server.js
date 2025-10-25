@@ -38,11 +38,19 @@ app.get("/api/restaurants/menu/:resId", async (req, res) => {
   const { resId } = req.params;
 
   const cacheKey = `menu-${resId}`;
+  const cookieKey = "swiggy-cookie"
+  let cookie;
 
   if (cache.has(cacheKey)) return res.json(cache.get(cacheKey));
 
+  if (cache.has(cookieKey)) {
+    cookie = cache.get(cookieKey)
+  } else {
+    cookie = await retrieveSwiggyCookie();
+    cache.set(cookieKey, cookie, 15);
+  }
+
   try {
-    const cookie = await retrieveSwiggyCookie();
 
     const response = await fetch(
       `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=13.0035068&lng=77.5890953&restaurantId=${resId}`,

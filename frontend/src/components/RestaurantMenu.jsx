@@ -13,8 +13,7 @@ const RestaurantMenu = () => {
   const fetchMenu = async () => {
     const response = await fetch(`http://localhost:5000/api/restaurants/menu/${resId}`);
     const data = await response.json();
-
-    console.log(data);
+    setResInfo(data);
   };
 
   if (resInfo === null) return <Shimmer count={6} />;
@@ -24,7 +23,7 @@ const RestaurantMenu = () => {
       <h1>Restaurant Name</h1>
       <h1>Menu</h1>
       <ul>
-        {/* {itemCards.map((item) => <li key={item?.card?.info?.id}>{item?.card?.info?.name} - Rs.{item?.card?.info?.price}</li>)} */}
+        {resInfo.map((item) => <li key={item?.card?.info?.id}>{item?.card?.info?.name} - Rs.{item?.card?.info?.price}</li>)}
       </ul>
     </div>
   );
