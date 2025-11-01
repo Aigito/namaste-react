@@ -37,15 +37,16 @@ const Body = () => {
     (
       <div className="body">
         <div className="filter">
-          <div className="search">
+          <div className="m-4 p-4">
             <input
               type="text"
-              className="search-box"
+              className="border-2 rounded-md border-solid border-black"
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)
               }
             />
             <button
+              className="px-4 py-1 m-4 bg-green-100"
               onClick={() => {
                 const filteredList = listOfRestaurants.filter(res => res.info.name.toLowerCase().includes(searchInput.toLowerCase()));
                 setFilteredListOfRestaurants(filteredList);
@@ -53,17 +54,17 @@ const Body = () => {
             >
               Search
             </button>
+            <button
+              className="px-4 py-1 bg-blue-100"
+              onClick={() => {
+                const filteredList = listOfRestaurants.filter(res => res.info.avgRating > 4.5);
+                setFilteredListOfRestaurants(filteredList);
+              }}>
+              Top Rated Restaurants
+            </button>
           </div>
-          <button
-            className="filter-btn"
-            onClick={() => {
-              const filteredList = listOfRestaurants.filter(res => res.info.avgRating > 4.5);
-              setFilteredListOfRestaurants(filteredList);
-            }}>
-            Top Rated Restaurants
-          </button>
         </div>
-        <div className="restaurants-container">
+        <div className="flex flex-wrap gap-12">
           {filteredListOfRestaurants.map((res) => (
             // Note: We can make the id param dynamic but because Swiggy no longer provides public API
             // we can only mock the data and it shows the same menu for all the restaurants
